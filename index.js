@@ -35,8 +35,12 @@ db.serialize(function(){
     });
 
     //Printing Names from Department Whose Budget is Greater Than 85000
-    db.each("SELECT Dept_name FROM Department WHERE Budget > 85000",function(err,row){
-        console.log("Departments Whose Budget is Greater Than 85000 :-" + "  " +row.Dept_name + "\n");
+    db.all("SELECT Dept_name FROM Department WHERE Budget > 85000", [], function(err,rows) {
+        console.log("\n" + "Departments Whose Budget is Greater Than 85000 :-");
+        rows.forEach(row => {
+            console.log(row.Dept_name);
+        })
+        console.log("\n");
     });
 
     //Printing Total Capacity of Each Department
